@@ -1,18 +1,71 @@
 <!DOCTYPE html>
-<html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Stopwatch</title><link rel='stylesheet' href='style.css'></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A clean, modern, and accurate stopwatch web application with millisecond precision, lap tracking, and keyboard shortcuts.">
+  <title>Stopwatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-<div class='container'>
-<h1>Stopwatch</h1>
-<div id='time'>00:00:00.000</div>
-<div class='btns'>
-<button id='start'>Start</button>
-<button id='pause'>Pause</button>
-<button id='reset'>Reset</button>
-<button id='lap'>Lap</button>
-</div>
-<h2>Lap Times</h2>
-<ul id='laps'></ul>
-</div>
-<script src='script.js'></script>
-</body></html>
+  <main class="app-container">
+    <div class="stopwatch-card">
+      <header class="card-header">
+        <h1 class="card-title">Stopwatch</h1>
+        <div id="status" class="status-indicator ready" aria-live="polite">Ready</div>
+      </header>
+
+      <section class="display-section" aria-label="Current Elapsed Time">
+        <div id="time" class="time-display" aria-live="off">00:00:00.000</div>
+      </section>
+
+      <section class="controls-section" aria-label="Stopwatch Controls">
+        <div class="btns">
+          <button id="start" class="btn btn-start" type="button" aria-label="Start Timer">Start</button>
+          <button id="pause" class="btn btn-pause" type="button" aria-label="Pause Timer" disabled>Pause</button>
+          <button id="lap" class="btn btn-lap" type="button" aria-label="Record Lap Time" disabled>Lap</button>
+          <button id="reset" class="btn btn-reset" type="button" aria-label="Reset Timer" disabled>Reset</button>
+        </div>
+      </section>
+
+      <section class="laps-section" aria-label="Recorded Lap Times">
+        <div class="laps-header">
+          <h2 class="laps-title">
+            Lap Times
+            <span id="lap-count" class="lap-count-badge">0</span>
+          </h2>
+        </div>
+
+        <div id="lap-table-head" class="lap-table-head" style="display: none;" aria-hidden="true">
+          <span>Lap</span>
+          <span class="align-right">Split</span>
+          <span class="align-right">Total</span>
+        </div>
+
+        <div id="no-laps" class="no-laps-state">
+          No laps recorded yet
+        </div>
+
+        <ul id="laps" class="laps-list" role="list" aria-label="Lap history"></ul>
+      </section>
+
+      <footer class="shortcuts-footer" aria-label="Keyboard Shortcuts">
+        <div class="shortcut-tip">
+          <kbd>Space</kbd> Start / Pause
+        </div>
+        <div class="shortcut-tip">
+          <kbd>L</kbd> Lap
+        </div>
+        <div class="shortcut-tip">
+          <kbd>R</kbd> Reset
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
